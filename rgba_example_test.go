@@ -30,13 +30,21 @@ func ExampleRGBA() {
 	// 1 × 4 = 4.
 	const depth  = 4
 
-	// This is the array whre the image data is stored.
+	// This is the array where the image data is stored.
 	//
 	// Note that the size of this array is a function of the
 	// ‘width’, ‘height’, and ‘depth’.
 	var memory [width*height*depth]uint8
 
+	// PAY CLOSE ATTENTION TO THIS!
+	//
 	// Here is where we set up the image.
+	//
+	// Here we are using the ‘dynaimg.RGBA’ type.
+	//
+	// Notice that we specified the width, and the height.
+	//
+	// Also notice that we gave it the memory where the actual image data is stored.
 	var img dynaimg.RGBA = dynaimg.RGBA{
 		Pix: memory[:],
 
