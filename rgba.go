@@ -30,11 +30,9 @@ func (receiver RGBA) At(x, y int) color.Color {
 		return color.NRGBA{}
 	}
 
-	pix    := receiver.Pix
-	width  := receiver.Width
-	height := receiver.Height
+	pix := receiver.Pix
 
-	if width*height != len(pix) {
+	if receiver.expectedByteSize() != len(pix) {
 		return color.NRGBA{}
 	}
 
@@ -75,6 +73,10 @@ func (receiver RGBA) ColorModel() color.Model {
 
 func (receiver RGBA) depth() int {
 	return rgba32.ByteSize
+}
+
+func (receiver RGBA) expectedByteSize() int {
+	return receiver.Width * receiver.Height * receiver.depth()
 }
 
 func (receiver RGBA) PixOffset(x, y int) int {
